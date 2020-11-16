@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "eventapp-48ed6": {
+      "hosting": {
+        "eventApp": [
+          "eventapp-48ed6"
+        ]
+      }
+    }
+  }
+}
