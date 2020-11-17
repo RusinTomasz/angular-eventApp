@@ -58,15 +58,6 @@ export const authReducer = createReducer<AuthState>(
   //     }
   //   ),
   //   on(
-  //     AuthPageActions.loginUser,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         isLoading: true,
-  //       };
-  //     }
-  //   ),
-  //   on(
   //     AuthPageActions.logoutUser,
   //     (state): AuthState => {
   //       return {
@@ -84,34 +75,35 @@ export const authReducer = createReducer<AuthState>(
   //       };
   //     }
   //   ),
-  //   on(
-  //     AuthApiActions.loginUserSuccess,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         currentUser: {
-  //           firstName: action.user.firstName,
-  //           lastName: action.user.lastName,
-  //           email: action.user.email,
-  //           token: action.user.token,
-  //           userId: action.user.userId,
-  //           role: action.user.role,
-  //         },
-  //         errors: { ...state.errors, loginError: '' },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.loginUserFailure,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, loginError: action.error },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
+  on(
+    AuthPageActions.loginUser,
+    (state): AuthState => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+  ),
+  on(
+    AuthApiActions.loginUserSuccess,
+    (state): AuthState => {
+      return {
+        ...state,
+        errors: { ...state.errors, loginError: '' },
+        isLoading: false,
+      };
+    }
+  ),
+  on(
+    AuthApiActions.loginUserFailure,
+    (state, action): AuthState => {
+      return {
+        ...state,
+        errors: { ...state.errors, loginError: action.error },
+        isLoading: false,
+      };
+    }
+  ),
   on(
     AuthPageActions.registerUser,
     (state): AuthState => {

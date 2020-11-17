@@ -9,10 +9,10 @@ export interface State extends AppState.State {
 // // Selector functions
 const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
 
-// export const getLoginError = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.errors.loginError
-// );
+export const getLoginError = createSelector(
+  getAuthFeatureState,
+  (state) => state.errors.loginError
+);
 
 export const getRegisterUserError = createSelector(
   getAuthFeatureState,
@@ -24,42 +24,7 @@ export const getRegisterUserSuccessMessage = createSelector(
   (state) => state.success.successUserRegistrationMessage
 );
 
-// export const getMailVerifyError = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.errors.mailVerifyError
-// );
-
-// export const getResetPasswordError = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.errors.resetPasswordError
-// );
-
-// export const getSendEmailToResetPasswordError = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.errors.sendEmailToResetPasswordError
-// );
-
 export const getLoadingStatus = createSelector(
   getAuthFeatureState,
   (state) => state.isLoading
 );
-
-// export const getUserToken = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.currentUser.token
-// );
-
-// export const getRegisteredUserEmail = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.registeredUserEmail
-// );
-
-// export const getEmailToSendResetPasswordLink = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.emailToSendResetPasswordLink
-// );
-
-// export const getPasswordHasBeenChangedFlag = createSelector(
-//   getAuthFeatureState,
-//   (state) => state.userPasswordHasBeenChanged
-// );

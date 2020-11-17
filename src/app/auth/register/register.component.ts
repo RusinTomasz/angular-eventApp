@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidatorService } from './../../helpers/form-validator.service';
 
 /* RxJS */
-import { Observable, Subject, from, defer } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* NgRx */
@@ -17,10 +17,6 @@ import {
   getRegisterUserSuccessMessage,
 } from './../state/index';
 import { AuthPageActions } from '../state/actions';
-
-/* AngularFire */
-
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'register',
@@ -39,7 +35,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private formValidatorService: FormValidatorService,
-
     private store: Store<State>
   ) {
     this._unsubscribeAll = new Subject();

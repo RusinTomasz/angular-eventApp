@@ -3,7 +3,7 @@
 login {
   #login {
     width: 100%;
-    background: url("/assets/images/backgrounds/dark-material-bg.jpg") no-repeat;
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
     background-size: cover;
     min-height: 100vh;
     #login-form-wrapper {
@@ -20,7 +20,7 @@ login {
         padding: 32px;
         text-align: center;
         background-color: #fff;
-
+        @include mat-elevation(16);
         @include media-breakpoint("xs") {
           padding: 24px;
           width: 100%;

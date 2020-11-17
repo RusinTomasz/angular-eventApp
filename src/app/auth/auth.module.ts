@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 /* Components */
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 /* NgRx */
 import { EffectsModule } from '@ngrx/effects';
@@ -20,10 +21,10 @@ import { authReducer } from './state/auth.reducer';
 import { StoreModule } from '@ngrx/store';
 
 const routes = [
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'register',
     component: RegisterComponent,
@@ -31,7 +32,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, LoginComponent],
   imports: [
     RouterModule.forChild(routes),
     //Shared
