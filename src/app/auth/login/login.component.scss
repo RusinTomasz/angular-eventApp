@@ -5,7 +5,7 @@ login {
     width: 100%;
     background: linear-gradient(to right, #c9d6ff, #e2e2e2);
     background-size: cover;
-    min-height: 100vh;
+    min-height: calc(100vh - 66px);
     #login-form-wrapper {
       flex: 1 0 auto;
       padding: 32px;

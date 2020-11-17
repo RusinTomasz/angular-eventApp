@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 /* App modules */
 import { ThemeSharedModule } from './shared.module';
 import { AuthModule } from './auth/auth.module';
+import { LayoutModule } from './layout/layout.module';
 
 /* AngularFire */
 import { AngularFireModule } from '@angular/fire';
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     EffectsModule.forRoot([]),
     //App modules
     AuthModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
