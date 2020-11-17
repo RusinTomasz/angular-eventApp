@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   private getCreateUserObservable(email: string, password: string) {
-    // Wait until an observer subscibes before creating the actual observable
+    // Wait until an observer subscribes before creating the actual observable
     return defer(() =>
       from(this.angularFireAuth.createUserWithEmailAndPassword(email, password))
     );
@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   private getLoginUserObservable(email: string, password: string) {
-    // Wait until an observer subscibes before creating the actual observable
+    // Wait until an observer subscribes before creating the actual observable
     return defer(() =>
       from(this.angularFireAuth.signInWithEmailAndPassword(email, password))
     );
