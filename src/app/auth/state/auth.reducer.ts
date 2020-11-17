@@ -1,39 +1,21 @@
-// import { autoLogin } from './actions/auth-page.actions';
-// import { User, RegisteredUser } from './../user';
 // /* NgRx */
 import { createReducer, on } from '@ngrx/store';
 import { AuthApiActions, AuthPageActions } from './actions';
-// import { ErrorStateMatcher } from '@angular/material/core';
 
 // // State for this feature (Auth)
 export interface AuthState {
-  currentUser: any;
   errors?: {
-    sendEmailToResetPasswordError?: string | null;
-    resetPasswordError?: string | null;
     loginError?: string | null;
     registerUserError?: string | null;
-    mailVerifyError?: string | null;
   };
   success?: { successUserRegistrationMessage: string | null };
   isLoading: boolean;
 }
 
 const initialState: AuthState = {
-  currentUser: {
-    firstName: null,
-    lastName: null,
-    email: null,
-    token: null,
-    userId: null,
-    role: null,
-  },
   errors: {
-    sendEmailToResetPasswordError: '',
-    resetPasswordError: '',
     loginError: '',
     registerUserError: '',
-    mailVerifyError: '',
   },
   success: { successUserRegistrationMessage: '' },
   isLoading: false,
@@ -41,40 +23,6 @@ const initialState: AuthState = {
 
 export const authReducer = createReducer<AuthState>(
   initialState,
-  //   on(
-  //     AuthPageActions.autoLogin,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         currentUser: {
-  //           firstName: action.userData.firstName,
-  //           lastName: action.userData.lastName,
-  //           email: action.userData.email,
-  //           token: action.userData.token,
-  //           userId: action.userData.userId,
-  //           role: action.userData.role,
-  //         },
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthPageActions.logoutUser,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         currentUser: {
-  //           firstName: null,
-  //           lastName: null,
-  //           email: null,
-  //           token: null,
-  //           userId: null,
-  //           role: null,
-  //         },
-  //         errors: { ...state.errors, loginError: '' },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
   on(
     AuthPageActions.loginUser,
     (state): AuthState => {
@@ -137,96 +85,4 @@ export const authReducer = createReducer<AuthState>(
       };
     }
   )
-  //   on(
-  //     AuthPageActions.verifyAccount,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         isLoading: true,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.verifyAccountSuccess,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, mailVerifyError: '' },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.verifyAccountFailure,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, mailVerifyError: action.error },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthPageActions.sendEmailToResetPassword,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         isLoading: true,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.sendEmailToResetPasswordSuccess,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, sendEmailToResetPasswordError: '' },
-  //         emailToSendResetPasswordLink: action.email,
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.sendEmailToResetPasswordFailure,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: {
-  //           ...state.errors,
-  //           sendEmailToResetPasswordError: action.error,
-  //         },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthPageActions.resetPassword,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         isLoading: true,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.resetPasswordSuccess,
-  //     (state): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, resetPasswordError: '' },
-  //         userPasswordHasBeenChanged: true,
-  //         isLoading: false,
-  //       };
-  //     }
-  //   ),
-  //   on(
-  //     AuthApiActions.resetPasswordFailure,
-  //     (state, action): AuthState => {
-  //       return {
-  //         ...state,
-  //         errors: { ...state.errors, resetPasswordError: action.error },
-  //         isLoading: false,
-  //       };
-  //     }
-  //   )
 );
