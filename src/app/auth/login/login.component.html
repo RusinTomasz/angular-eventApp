@@ -37,13 +37,13 @@
         </p>
 
         <div class="spinner" *ngIf="isLoading$ | async">
-          <mat-spinner color="accent"></mat-spinner>
+          <mat-spinner color="primary"></mat-spinner>
         </div>
         <div class="button-wrapper">
           <button
             *ngIf="!(isLoading$ | async)"
             mat-raised-button
-            color="accent"
+            color="primary"
             class="submit-button"
             aria-label="LOG IN"
             [disabled]="loginForm.invalid"
