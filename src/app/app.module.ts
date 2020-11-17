@@ -14,15 +14,18 @@ import { AppComponent } from './app.component';
 
 /* App modules */
 import { ThemeSharedModule } from './shared.module';
+import { AuthModule } from './auth/auth.module';
 
 /* AngularFire */
 import { AngularFireModule } from '@angular/fire';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     //Shared
     ThemeSharedModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -33,6 +36,8 @@ import { AngularFireModule } from '@angular/fire';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    //App modules
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
