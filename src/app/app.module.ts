@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { ThemeSharedModule } from './shared.module';
 import { AuthModule } from './auth/auth.module';
 import { LayoutModule } from './layout/layout.module';
+import { EventModule } from './event/event.module';
 
 /* AngularFire */
 import { AngularFireModule } from '@angular/fire';
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     //App modules
     AuthModule,
     LayoutModule,
+    EventModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

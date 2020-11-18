@@ -1,0 +1,181 @@
+<div class="container">
+  <form
+    name="newEventForm"
+    class="new-event-form"
+    [formGroup]="newEventForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-content-wrapper" fxLayout="row wrap">
+      <div class="form-column-basic-info" fxFlex="30">
+        <div class="form-segment">
+          <div
+            class="form-label"
+            fxLayout="row"
+            fxLayoutAlign="flex-start center"
+          >
+            <mat-icon matSuffix class="secondary-text">mail_outline</mat-icon>
+            <h2 class="form-label-title">Podstawowe informacje</h2>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa eventu</mat-label>
+            <input matInput required formControlName="title" />
+            <mat-icon matSuffix class="secondary-text">mail_outline</mat-icon>
+            <mat-error *ngIf="newEventForm.get('title').hasError('required')">
+              Nazwa jest wymagana
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Organizator</mat-label>
+            <input matInput required formControlName="promoter" />
+            <mat-icon matSuffix class="secondary-text">person_outline</mat-icon>
+            <mat-error> Organizator jest wymagany </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cena</mat-label>
+            <input matInput type="number" required formControlName="price" />
+            <mat-icon matSuffix class="secondary-text">attach_money</mat-icon>
+            <mat-error *ngIf="newEventForm.get('price').hasError('required')">
+              Cena jest wymagana
+            </mat-error>
+            <mat-error *ngIf="newEventForm.get('price').hasError('min')">
+              Cena nie może być niższa niż 1
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-segment">
+          <div
+            class="form-label"
+            fxLayout="row"
+            fxLayoutAlign="flex-start center"
+          >
+            <mat-icon matSuffix class="secondary-text">mail_outline</mat-icon>
+            <h2 class="form-label-title">Lokalizacja</h2>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Lokalizacja</mat-label>
+            <input matInput required formControlName="location" />
+            <mat-icon matSuffix class="secondary-text">public</mat-icon>
+            <mat-error
+              *ngIf="newEventForm.get('location').hasError('required')"
+            >
+              Lokalizacja jest wymagana
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-segment">
+          <div
+            class="form-label"
+            fxLayout="row"
+            fxLayoutAlign="flex-start center"
+          >
+            <mat-icon matSuffix class="secondary-text">mail_outline</mat-icon>
+            <h2 class="form-label-title">Data i czas eventu</h2>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data rozpoczęcia</mat-label>
+            <input
+              matInput
+              [ngxMatDatetimePicker]="picker"
+              placeholder="Wybierz datę"
+              formControlName="startTime"
+              [min]="minDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker
+              #picker
+              [showSeconds]="showSeconds"
+              [touchUi]="touchUi"
+              [color]="color"
+            >
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data zakończenia</mat-label>
+            <input
+              matInput
+              [ngxMatDatetimePicker]="picker2"
+              placeholder="Wybierz datę"
+              formControlName="endTime"
+              [min]="minDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker
+              #picker2
+              [showSeconds]="showSeconds"
+              [touchUi]="touchUi"
+              [color]="color"
+            >
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-column-description" fxFlex="55" fxFlexOffset="15">
+        <div class="form-segment">
+          <div
+            class="form-label"
+            fxLayout="row"
+            fxLayoutAlign="flex-start center"
+          >
+            <mat-icon matSuffix class="secondary-text">mail_outline</mat-icon>
+            <h2 class="form-label-title">Opis</h2>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Opis</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="30"
+              required
+              formControlName="description"
+            ></textarea>
+            <mat-error
+              *ngIf="newEventForm.get('description').hasError('required')"
+            >
+              Opis jest wymagany
+            </mat-error>
+          </mat-form-field>
+          <div class="button-wrapper" fxLayout="row" fxLayoutAlign="flex-end">
+            <button
+              mat-raised-button
+              color="primary"
+              class="submit-button"
+              aria-label="LOG IN"
+            >
+              Dodaj event
+            </button>
+            <!-- <button
+            *ngIf="!(isLoading$ | async)"
+            mat-raised-button
+            color="primary"
+            class="submit-button"
+            aria-label="LOG IN"
+            [disabled]="newEventForm.invalid"
+          >
+            ZALOGUJ
+          </button> -->
+          </div>
+        </div>
+      </div>
+      <!-- <p *ngIf="errorMessage$ | async as errorMessage" class="error">
+      {{ errorMessage }}
+    </p>
+
+    <div class="spinner" *ngIf="isLoading$ | async">
+      <mat-spinner color="primary"></mat-spinner>
+    </div> -->
+    </div>
+  </form>
+</div>
