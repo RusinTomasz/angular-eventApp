@@ -14,6 +14,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+
+/* Services */
+import { CategoryResolverService } from './../category/category-resolver.service';
 
 /* DateTime picker */
 import {
@@ -29,6 +33,7 @@ const routes = [
     path: 'new-event',
     component: AddEventComponent,
     canActivate: [AuthGuard],
+    resolve: { categories: CategoryResolverService },
   },
 ];
 
@@ -46,6 +51,7 @@ const routes = [
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatSelectModule,
     //DateTime picker
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,

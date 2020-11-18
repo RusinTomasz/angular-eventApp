@@ -1,5 +1,7 @@
 <div class="container">
+  <div *ngIf="!(categories$ | async)?.length"><h1>Loading...</h1></div>
   <form
+    *ngIf="(categories$ | async)?.length"
     name="newEventForm"
     class="new-event-form"
     [formGroup]="newEventForm"
@@ -42,6 +44,23 @@
             </mat-error>
             <mat-error *ngIf="newEventForm.get('price').hasError('min')">
               Cena nie może być niższa niż 1
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Kategoria</mat-label>
+            <mat-select required formControlName="category">
+              <mat-option
+                *ngFor="let category of categories$ | async"
+                [value]="category"
+              >
+                {{ category }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="newEventForm.get('category').hasError('required')"
+            >
+              Kategoria jest wymagana
             </mat-error>
           </mat-form-field>
         </div>
