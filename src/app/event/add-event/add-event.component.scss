@@ -1,6 +1,9 @@
 @import "src/scss/theme";
 
 :host {
+  .loader-label {
+    margin: 30px 0;
+  }
   .new-event-form {
     // max-width: 384px;
     .form-label {

@@ -19,14 +19,15 @@ import { MatSelectModule } from '@angular/material/select';
 /* Services */
 import { CategoryResolverService } from './../category/category-resolver.service';
 
+/* Ngx */
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 /* DateTime picker */
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
-
-/* NgRx */
 
 const routes = [
   {
@@ -52,6 +53,8 @@ const routes = [
     MatCheckboxModule,
     MatDatepickerModule,
     MatSelectModule,
+    //Ngx
+    NgxSkeletonLoaderModule,
     //DateTime picker
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
