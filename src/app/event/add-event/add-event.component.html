@@ -1,86 +1,4 @@
 <div class="container">
-  <div *ngIf="!(categories$ | async)?.length">
-    <div class="form-content-wrapper" fxLayout="row wrap">
-      <div class="form-column-basic-info" fxFlex="30">
-        <div class="loader-label">
-          <ngx-skeleton-loader
-            count="1"
-            [theme]="{
-              height: '50px'
-            }"
-            appearance="line"
-          ></ngx-skeleton-loader>
-        </div>
-        <ngx-skeleton-loader
-          count="5"
-          [theme]="{
-            height: '50px'
-          }"
-          appearance="line"
-        ></ngx-skeleton-loader>
-        <div class="loader-label">
-          <ngx-skeleton-loader
-            count="1"
-            [theme]="{
-              height: '50px'
-            }"
-            appearance="line"
-          ></ngx-skeleton-loader>
-        </div>
-        <ngx-skeleton-loader
-          count="1"
-          [theme]="{
-            height: '50px'
-          }"
-          appearance="line"
-        ></ngx-skeleton-loader>
-        <div class="loader-label">
-          <ngx-skeleton-loader
-            count="1"
-            [theme]="{
-              height: '50px'
-            }"
-            appearance="line"
-          ></ngx-skeleton-loader>
-        </div>
-        <ngx-skeleton-loader
-          count="2"
-          [theme]="{
-            height: '50px'
-          }"
-          appearance="line"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="form-column-description" fxFlex="55" fxFlexOffset="15">
-        <div class="loader-label">
-          <ngx-skeleton-loader
-            count="1"
-            [theme]="{
-              height: '50px'
-            }"
-            appearance="line"
-          ></ngx-skeleton-loader>
-        </div>
-        <ngx-skeleton-loader
-          count="1"
-          [theme]="{
-            height: '450px'
-          }"
-          appearance="line"
-        ></ngx-skeleton-loader>
-        <div fxLayout="row" fxLayoutAlign="flex-end">
-          <ngx-skeleton-loader
-            count="1"
-            [theme]="{
-              width: '150px',
-              height: '50px'
-            }"
-            appearance="line"
-          ></ngx-skeleton-loader>
-        </div>
-      </div>
-    </div>
-  </div>
   <form
     *ngIf="(categories$ | async)?.length"
     name="newEventForm"
@@ -196,6 +114,11 @@
               [color]="color"
             >
             </ngx-mat-datetime-picker>
+            <mat-error
+              *ngIf="newEventForm.get('startTime').hasError('required')"
+            >
+              Data rozpoczęcia jest wymagana
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -218,6 +141,17 @@
               [color]="color"
             >
             </ngx-mat-datetime-picker>
+            <mat-error *ngIf="newEventForm.get('endTime').hasError('required')">
+              Data zakończenia jest wymagana
+            </mat-error>
+            <mat-error
+              *ngIf="
+                !newEventForm.get('endTime').hasError('required') &&
+                newEventForm.get('endTime').hasError('dateEndIsNotValid')
+              "
+            >
+              Data zakończenia musi nastąpić po dacie rozpoczęcia.
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -278,4 +212,86 @@
     </div> -->
     </div>
   </form>
+  <div *ngIf="!(categories$ | async)?.length">
+    <div class="form-content-wrapper" fxLayout="row wrap">
+      <div class="form-column-basic-info" fxFlex="30">
+        <div class="loader-label">
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              height: '50px'
+            }"
+            appearance="line"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader
+          count="5"
+          [theme]="{
+            height: '50px'
+          }"
+          appearance="line"
+        ></ngx-skeleton-loader>
+        <div class="loader-label">
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              height: '50px'
+            }"
+            appearance="line"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{
+            height: '50px'
+          }"
+          appearance="line"
+        ></ngx-skeleton-loader>
+        <div class="loader-label">
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              height: '50px'
+            }"
+            appearance="line"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader
+          count="2"
+          [theme]="{
+            height: '50px'
+          }"
+          appearance="line"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="form-column-description" fxFlex="55" fxFlexOffset="15">
+        <div class="loader-label">
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              height: '50px'
+            }"
+            appearance="line"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{
+            height: '450px'
+          }"
+          appearance="line"
+        ></ngx-skeleton-loader>
+        <div fxLayout="row" fxLayoutAlign="flex-end">
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              width: '150px',
+              height: '50px'
+            }"
+            appearance="line"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

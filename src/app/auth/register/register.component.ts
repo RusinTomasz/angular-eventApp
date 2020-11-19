@@ -30,14 +30,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   successMessage$ = this.store.select(getRegisterUserSuccessMessage);
   isLoading$ = this.store.select(getLoadingStatus);
 
-  private _unsubscribeAll: Subject<any>;
+  private unsubscribeAll: Subject<any>;
 
   constructor(
     private formBuilder: FormBuilder,
     private formValidatorService: FormValidatorService,
     private store: Store<State>
   ) {
-    this._unsubscribeAll = new Subject();
+    this.unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
@@ -55,15 +55,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     this.registerForm
       .get('password')
-      .valueChanges.pipe(takeUntil(this._unsubscribeAll))
+      .valueChanges.pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
         this.registerForm.get('passwordConfirm').updateValueAndValidity();
       });
   }
 
   ngOnDestroy(): void {
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 
   onSubmit() {

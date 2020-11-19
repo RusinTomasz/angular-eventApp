@@ -31,4 +31,29 @@ export class FormValidatorService {
 
     return { passwordsNotMatching: true };
   };
+
+  dateEndValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    if (!control.parent || !control) {
+      return null;
+    }
+
+    const startTime = control.parent.get('startTime');
+    const endTime = control.parent.get('endTime');
+
+    if (!startTime || !endTime) {
+      return null;
+    }
+
+    if (endTime.value === '') {
+      return null;
+    }
+
+    if (startTime.value <= endTime.value) {
+      return null;
+    }
+
+    return { dateEndIsNotValid: true };
+  };
 }

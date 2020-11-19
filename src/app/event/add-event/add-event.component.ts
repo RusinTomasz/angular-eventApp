@@ -1,6 +1,11 @@
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+/* Services */
+import { FormValidatorService } from './../../helpers/form-validator.service';
 
+/* RxJS */
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 /* NgRx */
 import { Store } from '@ngrx/store';
 import { State } from './../../state/app.state';
@@ -21,7 +26,15 @@ export class AddEventComponent implements OnInit {
   showSeconds = false;
   color = 'primary';
 
-  constructor(private formBuilder: FormBuilder, private store: Store<State>) {}
+  private unsubscribeAll: Subject<any>;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private formValidatorService: FormValidatorService,
+    private store: Store<State>
+  ) {
+    this.unsubscribeAll = new Subject();
+  }
 
   ngOnInit(): void {
     this.newEventForm = this.formBuilder.group({
@@ -31,9 +44,24 @@ export class AddEventComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(1)]],
       location: ['', Validators.required],
       startTime: ['', Validators.required],
-      endTime: ['', Validators.required],
+      endTime: [
+        '',
+        [Validators.required, this.formValidatorService.dateEndValidator],
+      ],
       description: ['', Validators.required],
     });
+
+    this.newEventForm
+      .get('startTime')
+      .valueChanges.pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.newEventForm.get('endTime').updateValueAndValidity();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 
   onSubmit() {
