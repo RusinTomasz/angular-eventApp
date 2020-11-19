@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
     //NgRx
     StoreModule.forFeature('category', categoryReducer),
     EffectsModule.forFeature([CategoryEffects]),
-    // EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [],
 })
